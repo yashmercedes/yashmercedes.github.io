@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<style type="text/css">
+	h1{
+  font-size: 40px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 15px;
+}
+table{
+  width:100%;
+  table-layout: fixed;
+}
+.tbl-header{
+  background-color: rgba(255,255,255,0.3);
+ }
+.tbl-content{
+  height:300px;
+  overflow-x:auto;
+  margin-top: 0px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+th{
+  padding: 20px 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 12px;
+  color: #fff;
+  text-transform: uppercase;
+}
+td{
+  padding: 15px;
+  text-align: left;
+  vertical-align:middle;
+  font-weight: 300;
+  font-size: 12px;
+  color: #fff;
+  border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+
+
+/* demo styles */
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+body{
+  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+  background: linear-gradient(to right, #25c481, #25b7c4);
+  font-family: 'Roboto', sans-serif;
+}
+section{
+  margin: 50px;
+}
+.add{
+	position: relative;
+	left: 42%;
+}
+.led{
+  position: relative;
+  left: 35%;
+}
+.digit, .colon{
+  position:relative;
+  display:inline-block;
+  width:10px;
+  height:110px;
+  margin:5px;
+}
+
+
+.colon{
+  background: linear-gradient(-90deg, #82FA58 10px, transparent 10px),
+              linear-gradient(-90deg, #82FA58 10px, transparent 10px);
+  
+ 
+  background-position: 0 40px, 0 65px;
+  background-repeat:no-repeat;
+  background-size:10px 10px, 10px 10px;
+  
+}
+
+.digit{
+  width:60px;
+  
+  background-image: linear-gradient(90deg, transparent 10px, #25c481 10px, #25c481 50px, transparent 50px),   /*  Top  */
+                    linear-gradient(90deg, transparent 10px, #25c481 10px, #25c481 50px, transparent 50px),   /* Middle*/
+                    linear-gradient(90deg, transparent 10px, #25c481 10px, #25c481 50px, transparent 50px),   /* Bottom*/
+          
+                    linear-gradient(90deg, #25c481 10px, transparent 10px, transparent 50px, #25c481 50px),   /* Topleft */
+                    linear-gradient(90deg, #25c481 10px, transparent 10px, transparent 50px, #25c481 50px);   /* Bottomleft */
+  
+  background-position: 0 0, 0 50px, 0 100px, 0 10px, 0 60px;
+  background-repeat:no-repeat;
+  background-size:60px 10px, 60px 10px, 60px 10px, 60px 40px, 60px 40px;
+}
+
+.zero{
+  background-image: linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /*  Top  */
+                    linear-gradient(90deg, transparent 10px, #25c481 10px, #25c481 50px, transparent 50px),   /* Middle*/
+                    linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /* Bottom*/
+          
+                    linear-gradient(90deg, #82FA58 10px, transparent 10px, transparent 50px, #82FA58 50px),   /* Topleft */
+                    linear-gradient(90deg, #82FA58 10px, transparent 10px, transparent 50px, #82FA58 50px);   /* Bottomleft */
+}
+
+.one{
+  background-image: linear-gradient(90deg, transparent 10px, #25c481 10px, #25c481 50px, transparent 50px),   /*  Top  */
+                    linear-gradient(90deg, transparent 10px, #25c481 10px, #25c481 50px, transparent 50px),   /* Middle*/
+                    linear-gradient(90deg, transparent 10px, #25c481 10px, #25c481 50px, transparent 50px),   /* Bottom*/
+          
+                    linear-gradient(90deg, #25c481 10px, transparent 10px, transparent 50px, #82FA58 50px),   /* Topleft */
+                    linear-gradient(90deg, #25c481 10px, transparent 10px, transparent 50px, #82FA58 50px);   /* Bottomleft */
+}
+
+.two{
+  background-image: linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /*  Top  */
+                    linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /* Middle*/
+                    linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /* Bottom*/
+          
+                    linear-gradient(90deg, #25c481 10px, transparent 10px, transparent 50px, #82FA58 50px),   /* Topleft */
+                    linear-gradient(90deg, #82FA58 10px, transparent 10px, transparent 50px, #25c481 50px);   /* Bottomleft */
+}
+
+.three{
+  background-image: linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /*  Top  */
+                    linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /* Middle*/
+                    linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /* Bottom*/
+          
+                    linear-gradient(90deg, #25c481 10px, transparent 10px, transparent 50px, #82FA58 50px),   /* Topleft */
+                    linear-gradient(90deg, #25c481 10px, transparent 10px, transparent 50px, #82FA58 50px);   /* Bottomleft */
+}
+
+.foure{
+  background-image: linear-gradient(90deg, transparent 10px, #25c481 10px, #25c481 50px, transparent 50px),   /*  Top  */
+                    linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /* Middle*/
+                    linear-gradient(90deg, transparent 10px, #25c481 10px, #25c481 50px, transparent 50px),   /* Bottom*/
+          
+                    linear-gradient(90deg, #82FA58 10px, transparent 10px, transparent 50px, #82FA58 50px),   /* Topleft */
+                    linear-gradient(90deg, #25c481 10px, transparent 10px, transparent 50px, #82FA58 50px);   /* Bottomleft */
+}
+
+.five{
+  background-image: linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /*  Top  */
+                    linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /* Middle*/
+                    linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /* Bottom*/
+          
+                    linear-gradient(90deg, #82FA58 10px, transparent 10px, transparent 50px, #25c481 50px),   /* Topleft */
+                    linear-gradient(90deg, #25c481 10px, transparent 10px, transparent 50px, #82FA58 50px);   /* Bottomleft */
+}
+
+
+.six{
+  background-image: linear-gradient(90deg, transparent 10px, #25c481 10px, #25c481 50px, transparent 50px),   /*  Top  */
+                    linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /* Middle*/
+                    linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /* Bottom*/
+          
+                    linear-gradient(90deg, #82FA58 10px, transparent 10px, transparent 50px, #25c481 50px),   /* Topleft */
+                    linear-gradient(90deg, #82FA58 10px, transparent 10px, transparent 50px, #82FA58 50px);   /* Bottomleft */
+}
+
+
+.seven{
+  background-image: linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /*  Top  */
+                    linear-gradient(90deg, transparent 10px, #25c481 10px, #25c481 50px, transparent 50px),   /* Middle*/
+                    linear-gradient(90deg, transparent 10px, #25c481 10px, #25c481 50px, transparent 50px),   /* Bottom*/
+          
+                    linear-gradient(90deg, #25c481 10px, transparent 10px, transparent 50px, #82FA58 50px),   /* Topleft */
+                    linear-gradient(90deg, #25c481 10px, transparent 10px, transparent 50px, #82FA58 50px);   /* Bottomleft */
+}
+
+
+.eight{
+  background-image: linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /*  Top  */
+                    linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /* Middle*/
+                    linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /* Bottom*/
+          
+                    linear-gradient(90deg, #82FA58 10px, transparent 10px, transparent 50px, #82FA58 50px),   /* Topleft */
+                    linear-gradient(90deg, #82FA58 10px, transparent 10px, transparent 50px, #82FA58 50px);   /* Bottomleft */
+}
+
+.nine{
+  background-image: linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /*  Top  */
+                    linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /* Middle*/
+                    linear-gradient(90deg, transparent 10px, #82FA58 10px, #82FA58 50px, transparent 50px),   /* Bottom*/
+          
+                    linear-gradient(90deg, #82FA58 10px, transparent 10px, transparent 50px, #82FA58 50px),   /* Topleft */
+                    linear-gradient(90deg, #25c481 10px, transparent 10px, transparent 50px, #82FA58 50px);   /* Bottomleft */
+}
+
+/* follow me template */
+
+
+
+/* for custom scrollbar for webkit browser*/
+
+::-webkit-scrollbar {
+    width: 6px;
+} 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+} 
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+</style>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<body>
+<div class="container">
+ <h1>Washing Machine Quee</h1>
+<div class="led">
+  <span class="digit"></span>
+  <span class="digit"></span>
+  
+  <span class="colon"></span>
+  
+  <span class="digit"></span>
+  <span class="digit"></span>
+</div>
+<div ng-app="myApp" ng-controller="customersCtrl">
+<section>
+  <!--for demo wrap-->
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Mobile Number</th>
+          <th>Room Number</th>
+          <th>Hostel</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr ng-repeat="x in names">
+          <td>{{ x.Name }}</td>
+          <td>{{ x.MobNumber }}</td>
+          <td>{{ x.RoomNumber }}</td>
+          <td>{{ x.Hostel }}</td>
+          <td>{{ x.Status }}</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+</section>
+</div>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg add" data-toggle="modal" data-target="#myModal">Add to Quee</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Quee Entry</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered" style="width:45%;float:left">
+			<tbody>
+				<tr>
+					<td colspan="1">Name</td>
+					<td colspan="1"><input type="text" id="name" placeholder="Enter Name" /></td>
+				</tr>
+				<tr>
+					<td colspan="1">Mobile Number</td>
+					<td colspan="1"><input type="text" id="mobnum" placeholder="Enter mobile number" /></td>
+				</tr>
+				<tr>
+					<td colspan="1">Room Number</td>
+					<td colspan="1"><input type="text" id="roomnum" placeholder="Enter room number" /></td>
+				</tr>
+				<tr>
+					<td colspan="1">Hostel</td>
+					<td colspan="1"><input type="text" id="hostel" placeholder="Enter hostel" /></td>
+				</tr>
+				<tr>
+					<td colspan="1">&nbsp;</td>
+					<td colspan="1"><button type="button" class="up_proceed btn btn-danger sub">Submit</button></td>
+				</tr>	
+			</tbody>
+		</table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+</body>
+ <script type="text/javascript">
+$(document).ready(function(){
+$('.sub').click(function(){
+	var name = document.getElementById("name").value;
+	var mobnum = document.getElementById("mobnum").value;
+	var roomnum = document.getElementById("roomnum").value;
+	var hostel = document.getElementById("hostel").value;
+	$.ajax({
+				url: '../php/add.php',
+				data:{name:name,mobnum:mobnum,roomnum:roomnum,hostel:hostel},
+				type: 'POST',
+				success: function(result) {
+					if(result == "success"){
+						alert("Added to quee");
+					}
+					else{
+						alert("Failed to add");
+					}
+				}
+			});
+});
+})
+$(window).on("load resize ", function() {
+  var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+  $('.tbl-header').css({'padding-right':scrollWidth});
+}).resize();
+</script>
+<script>
+var app = angular.module('myApp', []);
+app.controller('customersCtrl', function enter($scope, $http,$interval) {
+  $scope.callAtInterval = function() {
+    $http.get("../php/display.php")
+    .then(function (response) {$scope.names = response.data;});
+};
+$interval( function(){ $scope.callAtInterval(); }, 1000);
+});
+function change(){
+   $.ajax({
+              url: '../php/change.php',
+              type: 'POST',
+              success: function(result) {
+               
+              }
+            })
+}
+var c;
+function findDigit(dig){
+    if(dig[0]==1 && dig[1]==1 && dig[2]==1 && dig[3]==0 && dig[4]==1 && dig[5]==1 && dig[6]==1){
+      c="0";
+      return "0";
+    }
+    else if(dig[0]=="0" && dig[1]=="0" && dig[2]=="1" && dig[3]=="0" && dig[4]=="0" && dig[5]=="0" && dig[6]=="1"){
+      c="1";
+      return "1";
+    }
+    else if(dig[0]==0 && dig[1]==1 && dig[2]==1 && dig[3]==1 && dig[4]==1 && dig[5]==1 && dig[6]==0){
+      c="2";
+      return "2";
+    }
+    else if(dig[0]==0 && dig[1]==1 && dig[2]==1 && dig[3]==1 && dig[4]==0 && dig[5]==1 && dig[6]==1){
+      c="3";
+      return "3";
+    }
+    else if(dig[0]==1 && dig[1]==0 && dig[2]==1 && dig[3]==1 && dig[4]==0 && dig[5]==0 && dig[6]==1){
+      c="4";
+      return "4";
+    }
+    else if(dig[0]==1 && dig[1]==1 && dig[2]==0 && dig[3]==1 && dig[4]==0 && dig[5]==1 && dig[6]==1){
+      c="5";
+      return "5";
+    }
+    else if(dig[0]==1 && dig[1]==0 && dig[2]==0 && dig[3]==1 && dig[4]==1 && dig[5]==1 && dig[6]==1){
+      c="6";
+      return "6";
+    }
+    else if(dig[0]==0 && dig[1]==1 && dig[2]==1 && dig[3]==0 && dig[4]==0 && dig[5]==0 && dig[6]==1){
+      c="7";
+      return "7";
+    }
+    else if(dig[0]==1 && dig[1]==1 && dig[2]==1 && dig[3]==1 && dig[4]==1 && dig[5]==1 && dig[6]==1){
+      c="8";
+      return "8";
+    }
+    else if(dig[0]==1 && dig[1]==1 && dig[2]==1 && dig[3]==1 && dig[4]==0 && dig[5]==0 && dig[6]==1){
+      c="9";
+      return "9";
+    }
+    else if(dig[0]==1 && dig[1]==1 && dig[2]==0 && dig[3]==1 && dig[4]==1 && dig[5]==1 && dig[6]==0){
+      if(c!="E"){
+        c="E";
+        change();
+     }
+      return "E";
+    }
+    else{
+          return "0";
+    }
+  }
+  var a;
+  var b;
+var clock = {
+   
+  digits : ["zero", "one", "two", "three", "foure", "five", "six", "seven", "eight", "nine"],
+  
+  init : function(){
+    var $digit = $('.digit');
+    
+    // Ugly....
+    this.hour = [$($digit[0]), $($digit[1])];    
+    this.min  = [$($digit[2]), $($digit[3])];    
+    this.sec  = [$($digit[4]), $($digit[5])];
+    
+    
+    this.drawInterval(this.drawSecond, function(time){
+      return 1000 - time[3];
+    })
+    
+    this.drawInterval(this.drawMinute, function(time){
+      return 60000 - time[2] * 1000 - time[3];
+    })
+    
+      
+   this.drawInterval(this.drawHour, function(time){
+      return (60 - time[1]) * 60000 - time[2] * 1000 - time[3];
+    })        
+   
+  },
+ 
+  getTimeArray : function(){
+    $.ajax({
+        url: '../php/bindata.php',
+        type: 'POST',
+        success: function(result) {
+          
+          var content = JSON.parse(result);
+          var dig1 = [7];
+          dig1[0] = content[0].one;
+          dig1[1] = content[0].two;
+          dig1[2] = content[0].three;
+          dig1[3] = content[0].four;
+          dig1[4] = content[0].five;
+          dig1[5] = content[0].six;
+          dig1[6] = content[0].seven;
+          a1 = findDigit(dig1);
+          var dig2 = [7];
+          dig2[0] = content[0].eight;
+          dig2[1] = content[0].nine;
+          dig2[2] = content[0].ten;
+          dig2[3] = content[0].eleven;
+          dig2[4] = content[0].twelve;
+          dig2[5] = content[0].thirteen;
+          dig2[6] = content[0].fourteen;
+          a2 = findDigit(dig2);
+          var dig3 = [7];
+          dig3[0] = content[0].fifteen;
+          dig3[1] = content[0].sixteen;
+          dig3[2] = content[0].seventeen;
+          dig3[3] = content[0].eighteen;
+          dig3[4] = content[0].nineteen;
+          dig3[5] = content[0].twenty;
+          dig3[6] = content[0].twentyone;
+          a3 = findDigit(dig3);
+          a = "0"+a1;
+          b = a2+a3;
+          if(a=="0E" && b=="00"){
+            a="00";
+            b="00";
+           }
+        }
+      });
+   
+    return [a, b];
+  },
+    
+  drawInterval : function(func, timeCallback){
+    var time = this.getTimeArray();
+    
+    func.call(this, time);    
+    
+    var that = this;
+    setTimeout(function(){
+        that.drawInterval(func, timeCallback);      
+    }, timeCallback(time));
+  },
+    
+  drawHour : function(time){
+    this.drawDigits(this.hour, time[0]);  
+  },
+  
+  drawMinute : function(time){
+    this.drawDigits(this.min,  time[1]);  
+  },
+  
+  drawSecond : function(time){  
+    this.drawDigits(this.sec,  time[2]);
+  },
+  
+  drawDigits : function(digits, digit){
+    var ten = Math.floor(digit / 10);
+    var one = Math.floor(digit % 10);
+        
+    digits[0].attr('class', 'digit '+this.digits[ten]);
+    digits[1].attr('class', 'digit '+this.digits[one]);
+  }
+    
+}; 
+    
+clock.init();
+</script>
+</html>
